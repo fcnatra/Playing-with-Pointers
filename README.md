@@ -14,7 +14,7 @@ REF INPUT PARM `a = 0`
 
 -- exiting the method returning same ref param received as a ref --
 
-Reference received outside: `int stackedValueReceived: 1` and now `a = 1`
+Reference received outside: `ref int stackedValueReceived: 1` and now `a = 1`
 
 
 -- inside the method receiving the ref param --
