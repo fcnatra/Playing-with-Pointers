@@ -1,9 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Runtime.InteropServices;
 
+// rest of color definitions: https://gist.github.com/JCloudYu/fe1247796f74bc7cc0ed3aed0680d4ff
 var greenColor = "\u001b[38;5;118m";
 var yellowColor = "\u001b[38;5;227m";
 var orangeColor = "\u001b[38;5;178m";
+var cyanColor = "\u001b[36m";
 var resetColor = "\u001b[0m";
 
 int a = 1;
@@ -14,6 +16,7 @@ int valueReturn = MessUpWithPointers(ref a);
 Console.WriteLine($"\nAfter returning a reference to r into {yellowColor}int {nameof(valueReturn)}: {valueReturn}   {greenColor}a: {a}{resetColor}");
 
 Console.WriteLine($"\n\nREF INPUT PARM is now {yellowColor}stacked{resetColor}");
+Console.WriteLine($"Stacked value is passed {yellowColor}as a ref{resetColor} to the method");
 
 ref int refReturn = ref MessUpWithPointers(ref valueReturn);
 Console.WriteLine($"\nAfter returning a reference to r into {yellowColor}ref int {nameof(refReturn)}: {refReturn}   {greenColor}{nameof(valueReturn)}: {valueReturn}{resetColor}");
@@ -21,8 +24,9 @@ Console.WriteLine($"\nAfter returning a reference to r into {yellowColor}ref int
 
 ref int MessUpWithPointers(ref int r)
 {
+    Console.WriteLine($"\n{cyanColor}-- inside the method receiving the ref param --{resetColor}");
     List<int> v = [r, 2, 3]; // this unlinks the ref input param
-    Console.WriteLine($"List<int> v = [{string.Join(", ", v)}] {orangeColor}- where v[0] is the *value of* ref input param{resetColor}");
+    Console.WriteLine($"List<int> v = [r, 2, 3], thus = [{string.Join(", ", v)}] - where v[0] is {orangeColor}the *value of* ref input param{resetColor}, which unlinks the ref input param");
 
     Span<int> sp = CollectionsMarshal.AsSpan(v);
     Console.WriteLine($"sp spans v, thus sp = {string.Join(", ", sp.ToArray())}");
@@ -51,5 +55,6 @@ ref int MessUpWithPointers(ref int r)
     Console.WriteLine($"\tr = {r}");
     Console.WriteLine($"\tf = {f}");
 
+    Console.WriteLine($"{cyanColor}-- exiting the method returning same ref param received as a ref --{resetColor}");
     return ref r;
 }
