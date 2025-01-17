@@ -6,7 +6,16 @@ This is a test I wanted to do after reading this post: [https://em-tg.github.io/
 
 ## Console result:
 
-REF INPUT PARM `a = 1`
+REF INPUT PARM `a = 0`
+
+-- inside the method receiving the ref param --
+
+`myPointer = 0` - adding 1 to it results in `1`
+
+-- exiting the method returning same ref param received as a ref --
+
+Reference received outside: `int stackedValueReceived: 1` and now `a = 1`
+
 
 -- inside the method receiving the ref param --
 
