@@ -5,66 +5,74 @@ Testing how to use pointers/reference in C#
 This is a test I wanted to do after reading this post: [https://em-tg.github.io/csborrow/](https://em-tg.github.io/csborrow/)
 
 ## Console result:
--------------------------------------------
-REF INPUT PARM a = 1
+
+REF INPUT PARM `a = 1`
 
 -- inside the method receiving the ref param --
-List<int> v = [r, 2, 3], thus = [1, 2, 3] - where v[0] is the *value of* ref input param, which unlinks the ref input param
-sp spans v, thus sp = 1, 2, 3
 
-set r to point to sp[0], thus r = 1
-f is set with sp[0], thus f = 1
+List<int> v = [r, 2, 3], thus = [1, 2, 3] - where v[0] is `the *value of* ref input param`, which unlinks the ref input param
 
-After adding a value to v
-        v = 1, 2, 3, 4
-        sp = 1, 2, 3
-        r = 1
-        f = 1
+sp spans v, thus `sp = 1, 2, 3`
 
-After v[0]++
-        v = 2, 2, 3, 4
-        sp = 1, 2, 3
-        r = 1
-        f = 1
+set r to point to sp[0], thus `r = 1`</br>
+f is set with sp[0], thus `f = 1`
 
-After sp[0]++
-        v = 2, 2, 3, 4
-        sp = 2, 2, 3
-        r = 2
-        f = 1
+After adding a value to v</br>
+<pre><code>        v = 1, 2, 3, 4</br>
+        sp = 1, 2, 3</br>
+        r = 1</br>
+        f = 1</br>
+</code></pre>
+After v[0]++</br>
+<pre><code>        v = 2, 2, 3, 4</br>
+        sp = 1, 2, 3</br>
+        r = 1</br>
+        f = 1</br>
+</code></pre>
+After sp[0]++</br>
+<pre><code>        v = 2, 2, 3, 4</br>
+        sp = 2, 2, 3</br>
+        r = 2</br>
+        f = 1</br>
+</code></pre>
 -- exiting the method returning same ref param received as a ref --
 
-After returning a reference to r into int valueReturn: 2   a: 1
+After returning a reference to r into int `valueReturn: 2` and `a: 1`
 
 
-REF INPUT PARM is now stacked
+REF INPUT PARM is now `stacked`
+
 Stacked value is passed as a ref to the method
 
 -- inside the method receiving the ref param --
-List<int> v = [r, 2, 3], thus = [2, 2, 3] - where v[0] is the *value of* ref input param, which unlinks the ref input param
-sp spans v, thus sp = 2, 2, 3
 
-set r to point to sp[0], thus r = 2
-f is set with sp[0], thus f = 2
+List<int> v = [r, 2, 3], thus = [2, 2, 3] - where v[0] is `the *value of* ref input param`, which unlinks the ref input param
 
-After adding a value to v
-        v = 2, 2, 3, 4
-        sp = 2, 2, 3
-        r = 2
-        f = 2
+sp spans v, thus `sp = 2, 2, 3`
 
-After v[0]++
-        v = 3, 2, 3, 4
-        sp = 2, 2, 3
-        r = 2
-        f = 2
+set r to point to sp[0], thus `r = 2`</br>
+f is set with sp[0], thus `f = 2`
 
-After sp[0]++
-        v = 3, 2, 3, 4
-        sp = 3, 2, 3
-        r = 3
-        f = 2
+After adding a value to v</br>
+<pre><code>        v = 2, 2, 3, 4</br>
+        sp = 2, 2, 3</br>
+        r = 2</br>
+        f = 2</br>
+</code></pre>
+After v[0]++</br>
+<pre><code>        v = 3, 2, 3, 4</br>
+        sp = 2, 2, 3</br>
+        r = 2</br>
+        f = 2</br>
+</code></pre>
+After sp[0]++</br>
+<pre><code>        v = 3, 2, 3, 4</br>
+        sp = 3, 2, 3</br>
+        r = 3</br>
+        f = 2</br>
+</code></pre>
 -- exiting the method returning same ref param received as a ref --
 
-After returning a reference to r into ref int refReturn: 3   valueReturn: 2
+After returning a reference to r into ref int `refReturn: 3` and `valueReturn: 2`
+
 -------------------------------------------
